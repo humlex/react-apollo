@@ -6,7 +6,7 @@ import AddIcon from "@material-ui/icons/Add";
 import DirectorsTable from "../DirectorsTable/DirectorsTable";
 import DirectorsForm from "../DirectorsForm/DirectorsForm";
 
-import withHocs from "./DirectorsHoc";
+import withHocs from "./DirectosHoc";
 
 class Directors extends React.Component {
   state = {
