@@ -14,34 +14,28 @@ import SaveIcon from "@material-ui/icons/Save";
 
 import withHocs from "./MoviesFormHoc";
 
-const directors = [
-  {
-    id: 1,
-    name: "Quentin Tarantino",
-    age: 55,
-    movies: [{ name: "Movie 1" }, { name: "Movie 2" }],
-  },
-  {
-    id: 2,
-    name: "Guy Ritchie",
-    age: 50,
-    movies: [{ name: "Movie 1" }, { name: "Movie 2" }],
-  },
-];
-
 class MoviesForm extends React.Component {
   handleClose = () => {
     this.props.onClose();
   };
 
   handleSave = () => {
-    const { selectedValue, onClose } = this.props;
+    const { selectedValue, onClose, addMovie } = this.props;
     const { id, name, genre, rate, directorId, watched } = selectedValue;
+    addMovie({
+      id,
+      name,
+      genre,
+      rate: Number(rate),
+      directorId,
+      watched: Boolean(watched),
+    });
     onClose();
   };
 
   render() {
     const {
+      data = {},
       classes,
       open,
       handleChange,
@@ -50,6 +44,7 @@ class MoviesForm extends React.Component {
       selectedValue = {},
     } = this.props;
     const { name, genre, rate, directorId, watched } = selectedValue;
+    const { directors = [] } = data;
 
     return (
       <Dialog
